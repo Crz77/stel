@@ -278,3 +278,112 @@
 1679943393094:app
 1679943405056:telemetryData
 1679943408301:list-td
+1679944851028:commands
+1679985352364:app
+1679985355487:list-apps
+1679985361960:list-instances-appid 1
+1679985365933:commands
+1679985368866:instance
+1679985372831:list-instances
+1679985377817:commands
+1679985380705:detector
+1679985385080:list-detectors
+1679985430477:create-detector 1 --myDec 5 10 10
+1679985441724:create-detector 1 myDec 5 10 10
+1679985447243:lsit-detectors
+1679985451779:list-detectors
+1679985459314:detector
+1679985469414:list-detectors-appid 1
+1679985479970:list-detectors-metricid 2
+1679985485800:commands
+1679985491518:incident
+1679985499062:list-incidents
+1679985645215:incident
+1679985648366:list-incidents
+1679985794460:incident
+1679985807070:list-incidents-appid 1
+1679985981532:incident
+1679985987909:list-incidents-instid 1
+1679985999856:list-incidents-instid 2
+1679986066267:list-incidents-appid 2
+1679986087534:list-incidents-instid 2
+1679986093606:list-incidents-instid 1
+1679986103875:incitend
+1679986106133:incident
+1679986112504:list-incidents-appid 1
+1679986163562:incident
+1679986169027:list-incidents-appid 1
+1679986189406:incident
+1679986195368:delete-inc-appid 1
+1679986246832:incident
+1679986252896:delete-inc-appid 1
+1679986277243:list-incidents-appid 1
+1679986287082:delete-inc-appid 1
+1679986294073:list-incidents-appid 1
+1679986311958:commands
+1679986319950:telemtryData
+1679986325037:telemetryData
+1679986329440:list-td
+1679986334578:telemetryData
+1679986345874:list-td-appid 1
+1679986357739:delete-td-appid 1
+1679986361728:list-td-appid 1
+1679986469033:telemtryData
+1679986475663:telemetryData
+1679986487175:delete-td-appid 1
+1679986518951:list-td-appid 1
+1679986634247:telemetryData
+1679986640626:list-td-appid 1
+1679986651611:delete-td-appid 1
+1679986656267:list-td-appid 1
+1679986758195:telemetryData
+1679986766508:list-td-appid 1
+1679986775473:delete-td-appid 1
+1679986779518:list-td-appid 1
+1679986869565:telemetryData
+1679986878260:delete-td-appid 1
+1679986913898:list-td-appid 1
+1679987012521:delete-td-appid 1
+1679987047882:list-td-appid 1
+1679987150918:delete-td-appid 1
+1679987171257:list-td-appid 1
+1679987493035:telemetryData
+1679987499525:list-td-appid 1
+1679987525313:delete-td-appid 1
+1679987529389:list-td-appid 1
+1679987640418:delete-td-appid 1
+1679987668549:list-td-appid 1
+1679987729536:telemetryData
+1679987744357:delete-td-appid 1
+1679987793464:list-td-appid 1
+1679987879644:telemetryData
+1679987887598:list-td-appid 1
+1679987903247:delete-td-appid 1
+1679988005871:list-td-appid 1
+1679988075528:delete-td-appid 1
+1679988079398:list-td-appid 1
+1679988090392:list-td-instid 1
+1679988111978:list-td-instanceid 1
+1679988118243:list-td-instanceid 2
+1679988123011:list-td
+1679988175359:delete-td-instanceid 3
+1679988178999:list-td
+1679988230428:telemetryData
+1679988261638:delete-td-ts-before 2023-07-01T00:00:00
+1679988279799:list-td
+1679988294021:commands
+1679988297007:metric
+1679988332242:dataStatistic
+1679988341745:get-avg-metric-metid 1
+1679988362701:get-std-dev-metric-metid 1
+1679988375821:commands
+1679988380884:incidentStatistic
+1679988385980:get-most-incs-app
+1679988399840:get-most-incs-inst
+1679988532151:commands
+1679988536334:incidentStatistic
+1679988541698:get-most-incs-app
+1679988583749:commands
+1679988588073:incidentStatistic
+1679988593389:get-most-incs-app
+1679988609972:get-most-incs-inst

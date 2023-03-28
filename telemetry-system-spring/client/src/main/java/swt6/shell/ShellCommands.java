@@ -43,7 +43,6 @@ public class ShellCommands {
     System.out.println("instance              " + "   -- List all instance commands --");
     System.out.println("detector              " + "   -- List all detector commands --");
     System.out.println("telemetryData         " + "   -- List all telemetryData commands --");
-    System.out.println("metric                " + "   -- List all metric commands --");
     System.out.println("incident              " + "   -- List all incident commands --");
     System.out.println("dataStatistic         " + "   -- List all statistic commands --");
     System.out.println("incidentStatistic     " + "   -- List all statistic commands --");
@@ -254,34 +253,38 @@ public class ShellCommands {
     List<Metric> metrics = metricService.getMetricsByApplicationId(id);
     List<LogMessage> logMessages = logMessageService.getAllByApplicationId(id);
 
-    if(metrics.size() + logMessages.size() == 0){
+    if(metrics == null && (logMessages == null || logMessages.size() == 0)){
       System.out.println("There is no data in this system");
       return;
     }
 
-    System.out.println("======== Metrics ========");
-    for(var m : metrics){
-      System.out.println("ID:         " + m.getId());
-      System.out.println("SenderID:   " + m.getSenderID());
-      System.out.println("Name:       " + m.getName());
-      System.out.println("CommonName: " + m.getCommonName());
-      System.out.println("Timestamp:  " +m .getTimestamp());
+    if(metrics != null && metrics.size() != 0) {
+      System.out.println("======== Metrics ========");
+      for (var m : metrics) {
+        System.out.println("ID:         " + m.getId());
+        System.out.println("SenderID:   " + m.getSenderID());
+        System.out.println("Name:       " + m.getName());
+        System.out.println("CommonName: " + m.getCommonName());
+        System.out.println("Timestamp:  " + m.getTimestamp());
+        System.out.println();
+      }
       System.out.println();
     }
-    System.out.println();
 
-    System.out.println("======== LogMessages ========");
-    for(var l : logMessages){
-      System.out.println("ID:         " + l.getId());
-      System.out.println("SenderID:   " + l.getSenderID());
-      System.out.println("Name:       " + l.getName());
-      System.out.println("CommonName: " + l.getCommonName());
-      System.out.println("Timestamp:  " + l.getTimestamp());
-      System.out.println("Message:    " + l.getMessage());
-      System.out.println("LogLevel:   " + l.getLogLevel());
+    if(logMessages != null && logMessages.size() != 0) {
+      System.out.println("======== LogMessages ========");
+      for (var l : logMessages) {
+        System.out.println("ID:         " + l.getId());
+        System.out.println("SenderID:   " + l.getSenderID());
+        System.out.println("Name:       " + l.getName());
+        System.out.println("CommonName: " + l.getCommonName());
+        System.out.println("Timestamp:  " + l.getTimestamp());
+        System.out.println("Message:    " + l.getMessage());
+        System.out.println("LogLevel:   " + l.getLogLevel());
+        System.out.println();
+      }
       System.out.println();
     }
-    System.out.println();
   }
 
   @ShellMethod(key="list-td-instanceid", value="List all telemetry data by application instance id")
@@ -289,34 +292,38 @@ public class ShellCommands {
     List<Metric> metrics = metricService.getMetricsByApplicationInstanceId(id);
     List<LogMessage> logMessages = logMessageService.getAllByApplicationInstanceId(id);
 
-    if(metrics.size() + logMessages.size() == 0){
+    if (metrics == null && (logMessages == null || logMessages.size() == 0)) {
       System.out.println("There is no data in this system");
       return;
     }
 
-    System.out.println("======== Metrics ========");
-    for(var m : metrics){
-      System.out.println("ID:         " + m.getId());
-      System.out.println("SenderID:   " + m.getSenderID());
-      System.out.println("Name:       " + m.getName());
-      System.out.println("CommonName: " + m.getCommonName());
-      System.out.println("Timestamp:  " +m .getTimestamp());
+    if (metrics != null && metrics.size() != 0) {
+      System.out.println("======== Metrics ========");
+      for (var m : metrics) {
+        System.out.println("ID:         " + m.getId());
+        System.out.println("SenderID:   " + m.getSenderID());
+        System.out.println("Name:       " + m.getName());
+        System.out.println("CommonName: " + m.getCommonName());
+        System.out.println("Timestamp:  " + m.getTimestamp());
+        System.out.println();
+      }
       System.out.println();
     }
-    System.out.println();
 
-    System.out.println("======== LogMessages ========");
-    for(var l : logMessages){
-      System.out.println("ID:         " + l.getId());
-      System.out.println("SenderID:   " + l.getSenderID());
-      System.out.println("Name:       " + l.getName());
-      System.out.println("CommonName: " + l.getCommonName());
-      System.out.println("Timestamp:  " + l.getTimestamp());
-      System.out.println("Message:    " + l.getMessage());
-      System.out.println("LogLevel:   " + l.getLogLevel());
+    if (logMessages != null && logMessages.size() != 0) {
+      System.out.println("======== LogMessages ========");
+      for (var l : logMessages) {
+        System.out.println("ID:         " + l.getId());
+        System.out.println("SenderID:   " + l.getSenderID());
+        System.out.println("Name:       " + l.getName());
+        System.out.println("CommonName: " + l.getCommonName());
+        System.out.println("Timestamp:  " + l.getTimestamp());
+        System.out.println("Message:    " + l.getMessage());
+        System.out.println("LogLevel:   " + l.getLogLevel());
+        System.out.println();
+      }
       System.out.println();
     }
-    System.out.println();
   }
 
   @ShellMethod(key = "delete-td-appid", value = "Delete telemetry data by application id")
@@ -367,39 +374,54 @@ public class ShellCommands {
   @ShellMethod(key = "list-incidents", value = "List all incidents")
   public void listAllIncidents(){
     for(var i : incidentService.getAllIncidents()){
-      System.out.println(i.getId() + ": " + i.getNode().getValue() + " " + i.getNode().getTimeStamp());
+      System.out.println("Metric ID:   " + i.getDetector().getMetric().getId());
+      System.out.println("Metric Name: " + i.getDetector().getMetric().getName());
+      System.out.println("ID:          " + i.getId());
+      System.out.println("Value:       " + i.getNode().getValue());
+      System.out.println("Timestamp:   " + i.getNode().getTimeStamp());
+      System.out.println();
     }
     System.out.println();
   }
 
-  @ShellMethod(key = "list-incidents-app-id", value = "List all incidents by Application Id")
+  @ShellMethod(key = "list-incidents-appid", value = "List all incidents by Application Id")
   public void listAllIncidentsByAppId(@ShellOption Long id){
     List<Incident> incidents = incidentService.getAllIncidentsByApplicationId(id);
-    if(incidents == null)
+    if(incidents.size() == 0)
       System.out.println("There are no incidents for app id: " + id);
     else {
-      System.out.println("Incidents for app id :" + id);
+      System.out.println("Incidents for app id : " + id);
       for (var i : incidents) {
-        System.out.println(i.getId() + ": " + i.getNode().getValue() + " " + i.getNode().getTimeStamp());
+        System.out.println("Metric ID:   " + i.getDetector().getMetric().getId());
+        System.out.println("Metric Name: " + i.getDetector().getMetric().getName());
+        System.out.println("ID:          " + i.getId());
+        System.out.println("Value:       " + i.getNode().getValue());
+        System.out.println("Timestamp:   " + i.getNode().getTimeStamp());
+        System.out.println();
       }
     }
     System.out.println();
   }
 
-  @ShellMethod(key = "list-incidents-inst-id", value = "List all incidents by application instance id")
+  @ShellMethod(key = "list-incidents-instid", value = "List all incidents by application instance id")
   public void listAllIncidentsByInstanceId(@ShellOption Long id){
     List<Incident> incidents = incidentService.getAllIncidentsByApplicationInstanceId(id);
-    if(incidents == null)
+    if(incidents.size() == 0)
       System.out.println("There are no incidents for instance id: " + id);
     else{
-      System.out.println("Incidents for application instance id :" + id);
+      System.out.println("Incidents for application instance id : " + id);
       for(var i : incidents){
-        System.out.println(i.getId() + ": " + i.getNode().getValue() + " " + i.getNode().getTimeStamp());
+        System.out.println("Metric ID:   " + i.getDetector().getMetric().getId());
+        System.out.println("Metric Name: " + i.getDetector().getMetric().getName());
+        System.out.println("ID:          " + i.getId());
+        System.out.println("Value:       " + i.getNode().getValue());
+        System.out.println("Timestamp:   " + i.getNode().getTimeStamp());
+        System.out.println();
       }
     }
   }
 
-  @ShellMethod(key = "delete-incidents-appid", value = "Delete all incidents by application id")
+  @ShellMethod(key = "delete-inc-appid", value = "Delete all incidents by application id")
   public void deleteAllIncidentsByAppId(@ShellOption Long id){
     incidentService.deleteAllByApplicationId(id);
   }
@@ -420,7 +442,7 @@ public class ShellCommands {
     incidentService.deleteAllByApplicationIdAndTimestampAfter(id, datetime);
   }
 
-  @ShellMethod(key = "delete-incidents-appid", value = "Delete all incidents by application incidents id")
+  @ShellMethod(key = "delete-inc-appid", value = "Delete all incidents by application incidents id")
   public void deleteAllIncidentsByInstanceId(@ShellOption Long id){
     incidentService.deleteAllByApplicationInstanceId(id);
   }
@@ -613,7 +635,7 @@ public class ShellCommands {
     List<Incident> incidents = incidentService.getAllIncidentsByApplicationId(res.getId());
     int count = incidents.size();
 
-    System.out.println("Application with ID " + res.getId() + "has " + count + " incidents");
+    System.out.println("Application with ID " + res.getId() + " has " + count + " incidents");
   }
 
   @ShellMethod(key = "get-most-incs-app-interval", value = "Get application with most incidents in interval")
@@ -630,7 +652,7 @@ public class ShellCommands {
     List<Incident> incidents = incidentService.getAllIncidentsByApplicationId(res.getId());
     int count = incidents.size();
 
-    System.out.println("Application with ID " + res.getId() + "has " + count + " incidents");
+    System.out.println("Application with ID " + res.getId() + " has " + count + " incidents");
     System.out.println("in interval from " + newFrom + " to " + newTo);
   }
 
@@ -644,7 +666,7 @@ public class ShellCommands {
     List<Incident> incidents = incidentService.getAllIncidentsByApplicationInstanceId(res.getId());
     int count = incidents.size();
 
-    System.out.println("Application instance with ID " + res.getId() + "has " + count + " incidents");
+    System.out.println("Application instance with ID " + res.getId() + " has " + count + " incidents");
   }
 
   @ShellMethod(key = "get-most-incs-inst-interval", value = "Get instance with most incidents in interval")
@@ -661,7 +683,7 @@ public class ShellCommands {
     List<Incident> incidents = incidentService.getAllIncidentsByApplicationId(res.getId());
     int count = incidents.size();
 
-    System.out.println("Application instance with ID " + res.getId() + "has " + count + " incidents");
+    System.out.println("Application instance with ID " + res.getId() + " has " + count + " incidents");
     System.out.println("in interval from " + newFrom + " to " + newTo);
   }
 
